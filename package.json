@@ -1,0 +1,41 @@
+{
+  "name": "qrcode-image-parser",
+  "version": "1.0.4",
+  "description": "Parse QR code image to raw data.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "inkjet": "^2.1.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.1",
+    "nyc": "^10.3.2",
+    "qrcode": "^0.8.1"
+  },
+  "scripts": {
+    "test": "nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/up9cloud/node-qrcode-image-parser.git"
+  },
+  "keywords": [
+    "qrcode",
+    "qr",
+    "image",
+    "parse",
+    "parser",
+    "wechat"
+  ],
+  "author": "up9cloud (https://github.com/up9cloud)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/up9cloud/node-qrcode-image-parser/issues"
+  },
+  "homepage": "https://github.com/up9cloud/node-qrcode-image-parser#readme"
+}
