@@ -10,7 +10,7 @@
     "inkjet": "^2.1.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.3.0",
     "coveralls": "^2.13.1",
     "mocha": "^3.4.1",
     "nyc": "^10.3.2",
