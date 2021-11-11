@@ -4,13 +4,19 @@ node_js:
 - '16'
 # after_success:
 # - npm run coverage
-deploy:
-  provider: npm
-  email: "$NPM_EMAIL"
-  api_key:
-    secure: QzflkmKbJJ+1r/eNWT5wUZeiNFDE27HUBxoUXDpzzXe0g0uc/HMqvWyQXQ3hhVurExcDJSXwt6warVve+UxIDkpjXXOSfaf2Grxmq600Fi8tASdrSBWNHwnhNMdDohHtOhRNaDR4eri/NBaK5Gp2GGZ9H7LrZVAHC5snt3M5D+zif2LbrhpwuZeu1h4qoOngG52t5qLyaJ5CuXmTQHXrGIF+YqsqlExZs+s+VMuyICFJOnmglCU7UsH8tcqzOtwhqfYxLXiDqYA7z8Xn/VfYFHhdzrXrtn5FWxOl+OVSKfYF8KH/Vzgav5M2jnDCrVveUnui+o+JZwrD78Pq3q0bn/nhZSXVFEUIOWuq/eilMH1D/5hwoknOlP+3tTZufPHkqLEuJwYd07V6kWsndHPVMV5fTofEFytMnuFM7W4QmRFMkagowSIQeJ5eZo0LW7aBcB1M6SUsbJetXVEavxVqF3CLgWP3MXGrLVqsrToFQAq2XWsTCtYSzhKRhwJo1c/oygG1UtESPqj0Nia3pdTNPn8HNwLeorqviUuzVfydQjH4x/IeRzdyydT61SO9GlwUHHp8psw7DCxMpASd8dDPmpPH/3aaRWg8zRs/z7klLmxgf+QSOauwdLe3cchnF5jdK0/mXb4TsHBlboOC5us8R94Hp2QtmY0v2BWsVB0tH5w=
-  on:
-    tags: true
-    repo: up9cloud/node-qrcode-image-parser
-    branch: master
-  skip_cleanup: true
+jobs:
+  include:
+    - stage: deploy
+      script: skip
+      deploy:
+        provider: npm
+        email: "$NPM_EMAIL"
+        api_key:
+          secure: QzflkmKbJJ+1r/eNWT5wUZeiNFDE27HUBxoUXDpzzXe0g0uc/HMqvWyQXQ3hhVurExcDJSXwt6warVve+UxIDkpjXXOSfaf2Grxmq600Fi8tASdrSBWNHwnhNMdDohHtOhRNaDR4eri/NBaK5Gp2GGZ9H7LrZVAHC5snt3M5D+zif2LbrhpwuZeu1h4qoOngG52t5qLyaJ5CuXmTQHXrGIF+YqsqlExZs+s+VMuyICFJOnmglCU7UsH8tcqzOtwhqfYxLXiDqYA7z8Xn/VfYFHhdzrXrtn5FWxOl+OVSKfYF8KH/Vzgav5M2jnDCrVveUnui+o+JZwrD78Pq3q0bn/nhZSXVFEUIOWuq/eilMH1D/5hwoknOlP+3tTZufPHkqLEuJwYd07V6kWsndHPVMV5fTofEFytMnuFM7W4QmRFMkagowSIQeJ5eZo0LW7aBcB1M6SUsbJetXVEavxVqF3CLgWP3MXGrLVqsrToFQAq2XWsTCtYSzhKRhwJo1c/oygG1UtESPqj0Nia3pdTNPn8HNwLeorqviUuzVfydQjH4x/IeRzdyydT61SO9GlwUHHp8psw7DCxMpASd8dDPmpPH/3aaRWg8zRs/z7klLmxgf+QSOauwdLe3cchnF5jdK0/mXb4TsHBlboOC5us8R94Hp2QtmY0v2BWsVB0tH5w=
+        on:
+          tags: true
+          repo: up9cloud/node-qrcode-image-parser
+          branch: master
+        skip_cleanup: true
+      after_deploy:
+        - curl -X POST https://api.telegram.org/bot$TELEGRAM_TOKEN/sendMessage -d chat_id=$TELEGRAM_CHAT_ID -d "text=qrcode-image-parser deployed"
