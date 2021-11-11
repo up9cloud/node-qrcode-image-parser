@@ -1,23 +1,24 @@
 {
   "name": "qrcode-image-parser",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Parse QR code image to raw data.",
-  "main": "index.js",
+  "main": "src/index.mjs",
+  "type": "module",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "inkjet": "^2.1.2"
+    "image-decode": "^1.2.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.13.1",
-    "mocha": "^3.4.1",
-    "nyc": "^10.3.2",
-    "qrcode": "^0.8.1"
+    "chai": "^4.3.4",
+    "coveralls": "^3.1.1",
+    "esm": "^3.2.25",
+    "mocha": "^9.1.3",
+    "nyc": "^15.1.0"
   },
   "scripts": {
-    "test": "nyc mocha",
+    "test": "nyc mocha -r esm",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
